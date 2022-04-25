@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { Icon } from "react-native-elements";
 
-function LoginScreen({navigation}) {
+function RegisterScreen ({navigation, route}) {
   const [user, setUser] = useState('');
   const [pwd, setPwd] = useState('');
+  const [conpwd, setConPwd] = useState('');
 
-
-  return (
+  return(
     <ScrollView style={styles.mainContainer}>
       <View style={styles.headerContainer}>
         <Text style={styles.txtHeader}>
-          Motorcycle Android {'\n'} Based {'\n'} Alarm and Tracking
+          Register Here
         </Text>
       </View>
       <View style={styles.fieldContainer}>
@@ -45,15 +45,30 @@ function LoginScreen({navigation}) {
             secureTextEntry={true}
           />
         </View>
-        <View style={styles.btnBottom}>
-          <Pressable style={styles.btnBtn} onPress={() => navigation.navigate("Home")}>
-            <Text style={styles.btnTxt}>
-              Login
+        <View style={styles.fieldGroup}>
+          <View style={styles.IconTxt}>
+            <Icon name="vpn-key" type='material' color='#000' size={24} style={styles.fieldIcon} />
+            <Text style={styles.fieldTxt}>
+              Confirm Password:
             </Text>
-          </Pressable>
-          <Pressable style={styles.btnBtn} onPress={() => navigation.navigate("Register")}>
+          </View>
+          <TextInput 
+            style={styles.fieldInput}
+            onChangeText={setConPwd}
+            placeholder="Confirm password here . . ."
+            placeholderTextColor="#888"
+            secureTextEntry={true}
+          />
+        </View>
+        <View style={styles.btnBottom}>
+          <Pressable style={styles.btnBtn}>
             <Text style={styles.btnTxt}>
               Register
+            </Text>
+          </Pressable>
+          <Pressable style={styles.btnBtn} onPress={() => navigation.navigate("Login")}>
+            <Text style={styles.btnTxt}>
+              Cancel
             </Text>
           </Pressable>
         </View>
@@ -78,7 +93,7 @@ const styles = StyleSheet.create({
   },
   fieldContainer: {
     alignSelf: "center",
-    marginTop: "20%",
+    marginTop: "10%",
   },
   fieldGroup: {
     padding: 5,
@@ -115,4 +130,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default LoginScreen;
+export default RegisterScreen;

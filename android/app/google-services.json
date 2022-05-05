@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1096361397379",
+    "project_id": "alarmandtracking-a9770",
+    "storage_bucket": "alarmandtracking-a9770.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1096361397379:android:5aba66cc3a8ea4d9e1dfb6",
+        "android_client_info": {
+          "package_name": "com.gpstracking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1096361397379-knj86o41j70oohsq02p7ebsqb3vsmom5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCccfGwn6pkZreIXm6w2Ep92hig8erP7NA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1096361397379-knj86o41j70oohsq02p7ebsqb3vsmom5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

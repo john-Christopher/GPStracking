@@ -16,11 +16,104 @@ function RegisterScreen ({navigation, route}) {
         </Text>
       </View>
       <View style={styles.fieldContainer}>
+      <Text style={styles.fieldTitle}>Personal Information</Text>
         <View style={styles.fieldGroup}>
           <View style={styles.IconTxt}>
-            <Icon type='material' name="person" color='#000' size={24} style={styles.fieldIcon} />
             <Text style={styles.fieldTxt}>
-              Username:
+              First Name:
+            </Text>
+          </View>
+          <TextInput 
+            style={styles.fieldInput}
+            onChangeText={setUser}
+            placeholder="Enter first name here . . ."
+            placeholderTextColor="#888"
+          />
+        </View>
+        <View style={styles.fieldGroup}>
+          <View style={styles.IconTxt}>
+            <Text style={styles.fieldTxt}>
+              Last Name:
+            </Text>
+          </View>
+          <TextInput 
+            style={styles.fieldInput}
+            onChangeText={setPwd}
+            placeholder="Enter last name here . . ."
+            placeholderTextColor="#888"
+          />
+        </View>
+        <View style={styles.fieldGroup}>
+          <View style={styles.IconTxt}>
+            <Text style={styles.fieldTxt}>
+              Complete address:
+            </Text>
+          </View>
+          <TextInput 
+            style={styles.fieldInput}
+            onChangeText={setConPwd}
+            placeholder="Enter address here . . ."
+            placeholderTextColor="#888"
+          />
+        </View>
+        <Text style={styles.fieldTitle}>{'\n'}Motorcycle Information</Text>
+        <View style={styles.fieldGroup}>
+          <View style={styles.IconTxt}>
+            <Text style={styles.fieldTxt}>
+              Registration number:
+            </Text>
+          </View>
+          <TextInput 
+            style={styles.fieldInput}
+            onChangeText={setUser}
+            placeholder="Enter registration number here . . ."
+            placeholderTextColor="#888"
+          />
+        </View>
+        <View style={styles.fieldGroup}>
+          <View style={styles.IconTxt}>
+            <Text style={styles.fieldTxt}>
+              Color:
+            </Text>
+          </View>
+          <TextInput 
+            style={styles.fieldInput}
+            onChangeText={setPwd}
+            placeholder="Enter color here . . ."
+            placeholderTextColor="#888"
+          />
+        </View>
+        <View style={styles.fieldGroup}>
+          <View style={styles.IconTxt}>
+            <Text style={styles.fieldTxt}>
+              Chassis Number:
+            </Text>
+          </View>
+          <TextInput 
+            style={styles.fieldInput}
+            onChangeText={setConPwd}
+            placeholder="Enter chassis number here . . ."
+            placeholderTextColor="#888"
+          />
+        </View>
+        <View style={styles.fieldGroup}>
+          <View style={styles.IconTxt}>
+            <Text style={styles.fieldTxt}>
+              Engine Number:
+            </Text>
+          </View>
+          <TextInput 
+            style={styles.fieldInput}
+            onChangeText={setConPwd}
+            placeholder="Enter engine number here . . ."
+            placeholderTextColor="#888"
+          />
+        </View>
+        <Text style={styles.fieldTitle}>{'\n'}Account Information</Text>
+        <View style={styles.fieldGroup}>
+          <View style={styles.IconTxt}>
+            <Text style={styles.fieldTxt}>
+              Email Address:
             </Text>
           </View>
           <TextInput 
@@ -32,7 +125,6 @@ function RegisterScreen ({navigation, route}) {
         </View>
         <View style={styles.fieldGroup}>
           <View style={styles.IconTxt}>
-            <Icon name="vpn-key" type='material' color='#000' size={24} style={styles.fieldIcon} />
             <Text style={styles.fieldTxt}>
               Password:
             </Text>
@@ -47,7 +139,6 @@ function RegisterScreen ({navigation, route}) {
         </View>
         <View style={styles.fieldGroup}>
           <View style={styles.IconTxt}>
-            <Icon name="vpn-key" type='material' color='#000' size={24} style={styles.fieldIcon} />
             <Text style={styles.fieldTxt}>
               Confirm Password:
             </Text>
@@ -94,6 +185,11 @@ const styles = StyleSheet.create({
   fieldContainer: {
     alignSelf: "center",
     marginTop: "10%",
+  },
+  fieldTitle: {
+    fontWeight: "bold",
+    fontSize: 17,
+    color: "#000"
   },
   fieldGroup: {
     padding: 5,

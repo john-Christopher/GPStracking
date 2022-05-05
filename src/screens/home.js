@@ -2,6 +2,8 @@ import React from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View, Dimensions, TextInput, FlatList } from 'react-native';
 import { Icon } from 'react-native-elements';
 
+import LogoutFunction from '../components/logoutFunc';
+
 const autoHeight = Dimensions.get('window').height;
 
 function HomeScreen({navigation}) {
@@ -15,7 +17,7 @@ function HomeScreen({navigation}) {
           <Pressable style={styles.menuBtn} onPress={() => navigation.navigate('Maps')}>
             <Icon name="place" type='material' color="#000" style={styles.menuIcon}/>
           </Pressable>
-          <Pressable style={styles.menuBtn} onPress={() => navigation.navigate('Login')}>
+          <Pressable style={styles.menuBtn} onPress={() => LogoutFunction(navigation)}>
             <Icon name="logout" type='material' color="#000" style={styles.menuIcon}/>
           </Pressable>
         </View>

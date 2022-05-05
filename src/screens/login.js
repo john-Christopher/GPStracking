@@ -3,6 +3,8 @@ import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-
 
 import { Icon } from "react-native-elements";
 
+import LoginFunction from '../components/loginFunc';
+
 function LoginScreen({navigation}) {
   const [user, setUser] = useState('');
   const [pwd, setPwd] = useState('');
@@ -20,7 +22,7 @@ function LoginScreen({navigation}) {
           <View style={styles.IconTxt}>
             <Icon type='material' name="person" color='#000' size={24} style={styles.fieldIcon} />
             <Text style={styles.fieldTxt}>
-              Username:
+              Email Address:
             </Text>
           </View>
           <TextInput 
@@ -46,7 +48,7 @@ function LoginScreen({navigation}) {
           />
         </View>
         <View style={styles.btnBottom}>
-          <Pressable style={styles.btnBtn} onPress={() => navigation.navigate("Home")}>
+          <Pressable style={styles.btnBtn} onPress={() => LoginFunction(user, pwd, navigation)}>
             <Text style={styles.btnTxt}>
               Login
             </Text>

@@ -1,12 +1,34 @@
-import React from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View, Dimensions, TextInput, FlatList } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { Pressable, ScrollView, StyleSheet, Text, View, TextInput, FlatList, SafeAreaView } from 'react-native';
 import { Icon } from 'react-native-elements';
 
 import LogoutFunction from '../components/logoutFunc';
 
-const autoHeight = Dimensions.get('window').height;
+import firestore from '@react-native-firebase/firestore';
 
-function HomeScreen({navigation}) {
+function HomeScreen({navigation, route}) {
+  const user = route.params?.user;
+  const [profile, setProfile] = useState([]);
+
+  useEffect(() => {
+    const subscriber = firestore()
+      .collection('Profile')
+      .onSnapshot(querySnapshot => {
+        const profile = [];
+          
+        querySnapshot.forEach(documentSnapshot => {
+          profile.push({
+            ...documentSnapshot.data(),
+            key: documentSnapshot.id,
+          });
+        });
+        setProfile(profile)
+      })
+    return () => subscriber();
+  }, []);
+
+
+
   return(
     <View style={styles.mainContainer}>
       <View style={styles.menuContainer}>
@@ -14,7 +36,12 @@ function HomeScreen({navigation}) {
           <Pressable style={styles.menuBtn} onPress={() => navigation.navigate('Home')}>
             <Icon name="home" type='material' color="#000" style={styles.menuIcon}/>
           </Pressable>
-          <Pressable style={styles.menuBtn} onPress={() => navigation.navigate('Maps')}>
+          <Pressable style={styles.menuBtn} onPress={() => navigation.navigate({
+            name: "Maps",
+            params: {
+              user: user
+            }
+          })}>
             <Icon name="place" type='material' color="#000" style={styles.menuIcon}/>
           </Pressable>
           <Pressable style={styles.menuBtn} onPress={() => LogoutFunction(navigation)}>
@@ -22,29 +49,33 @@ function HomeScreen({navigation}) {
           </Pressable>
         </View>
       </View>
-      <ScrollView style={styles.bodyContainer}>
-        <View style={styles.srchHolder}>
+      <View style={{flex: 1, flexDirection: "column", margin: 20,}}>
+        <View style={{flexDirection: "row", width: 320, justifyContent: "flex-end"}}>
           <TextInput 
-            placeholder='Search . . .'
-            placeholderTextColor='#444'
-            style={styles.srchInput}
+            placeholder='Search . . . '
+            placeholderTextColor="#888"
+            style={{borderBottomWidth: 2, width: 150, marginRight: 10,}}
           />
-          <Pressable style={styles.srchBtn}>
-            <Icon name="search" type='material' color="#000" style={styles.srchBtnIcon} />
-          </Pressable>
+          <Icon name='search' type='material' color="#000" style={{backgroundColor: "#00ff7f", padding: 10, borderRadius: 7,}} size={32} />
         </View>
-        
-      </ScrollView>
+      </View>
       <FlatList 
-        data={['Name', 'Motorcycle', 'Track']}
-        renderItem={({item}) => {
-          <View>
-            <Text style={{color: "#000"}}>
-              ASdad
-            </Text>
-          </View>
-        }}
-      />
+          data={profile}
+          renderItem={({ item }) => (
+            <View style={styles.dataContainerAdmin}>
+              <View style={styles.txtContainerAdmin}>
+                <Text style={styles.txtTitleAdmin}>Name</Text>
+                <Text style={styles.txtTitleAdmin}>Registration Number</Text>
+                <Text style={styles.txtTitleAdmin}>Address</Text>
+              </View>
+              <View style={styles.txtContainerAdmin}>
+                <Text style={styles.txtBodyAdmin}>{item.FirstName} {item.LastName}</Text>
+                <Text style={styles.txtBodyAdmin}>{item.RegNum}</Text>
+                <Text style={styles.txtBodyAdmin}>{item.Address}</Text>
+              </View>
+            </View>
+          )}
+        />
     </View>
   )
 }
@@ -57,7 +88,6 @@ const styles = StyleSheet.create({
   menuContainer: {
     alignContent: "center",
     backgroundColor: "#00ff7f",
-    height: autoHeight,
   },
   menuHolder: {
     marginTop: 150,
@@ -71,26 +101,26 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
   },
-  bodyContainer: {
-    marginLeft: 15,
-    marginTop: 25,
+  dataContainerAdmin: {
+    marginTop: 100,
   },
-  srchHolder: {
+  txtContainerAdmin: {
     flexDirection: "row",
-    alignSelf: "flex-end",
-    marginRight: 20,
+    margin: 10,
   },
-  srchInput: {
-    borderBottomWidth: 1,
-    width: 150,
-    marginRight: 10,
+  txtTitleAdmin: {
+    color: "#000",
+    fontWeight: "bold",
+    fontSize: 16,
+    width: 100,
   },
-  srchBtn: {
-    backgroundColor: "#00ff7f",
-    padding: 10,
-    width: 50,
-    borderRadius: 5,
-  }
+  txtBodyAdmin: {
+    color: "#000",
+    fontSize: 16,
+    flexWrap: "wrap",
+    width: 100,
+  },
+  
 })
 
 export default HomeScreen;

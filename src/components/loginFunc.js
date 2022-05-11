@@ -4,14 +4,23 @@ import auth from '@react-native-firebase/auth';
 
 import { Alert } from 'react-native';
 
-function LoginFunction(user, pwd, navigation){
+function LoginFunction(user, pwd, navigation, route){
   auth()
     .signInWithEmailAndPassword(user, pwd)
     .then(() => {
-      navigation.navigate({
-        name: 'Home'
-      })
-      console.log("Login Success")
+      if(user !== 'admin@email.com'){
+        navigation.navigate({
+          name: 'HomeUser',
+          params: {user: user}
+        })
+        console.log("Login Success ", user)
+      }else{
+        navigation.navigate({
+          name: 'Home',
+          params: {user: user}
+        })
+        console.log("Login Success ", user)
+      }
     })
     .catch(err => {
       console.log("Login Error")

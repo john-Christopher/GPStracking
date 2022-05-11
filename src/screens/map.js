@@ -4,15 +4,34 @@ import { Icon } from 'react-native-elements';
 
 const autoHeight = Dimensions.get('window').height;
 
-function MapScreen({navigation}) {
+function MapScreen({navigation, route}) {
+  const user = route.params?.user;
+
   return(
     <View style={styles.mainContainer}>
       <View style={styles.menuContainer}>
         <View style={styles.menuHolder}>
-          <Pressable style={styles.menuBtn} onPress={() => navigation.navigate('Home')}>
+          <Pressable style={styles.menuBtn} onPress={() => {{
+              if(user == 'admin@email.com'){
+                navigation.navigate({
+                  name: "Home",
+                  params: {
+                    user: user
+                  }
+                })
+              }else{
+                navigation.navigate({
+                  name: "HomeUser",
+                  params: {
+                    user: user,
+                  }
+                })
+              }
+            }
+          }}>
             <Icon name="home" type='material' color="#000" style={styles.menuIcon}/>
           </Pressable>
-          <Pressable style={styles.menuBtn} onPress={() => navigation.navigate('Maps')}>
+          <Pressable style={styles.menuBtn} onPress={() => navigation.navigate("Maps")}>
             <Icon name="place" type='material' color="#000" style={styles.menuIcon}/>
           </Pressable>
           <Pressable style={styles.menuBtn} onPress={() => navigation.navigate('Login')}>

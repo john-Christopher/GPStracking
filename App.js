@@ -6,6 +6,7 @@ import LoginScreen from './src/screens/login';
 import HomeScreen from './src/screens/home';
 import MapScreen from './src/screens/map';
 import RegisterScreen from './src/screens/register';
+import HomeUserScreen from './src/screens/homeUser';
 
 const Stack = createNativeStackNavigator();
 
@@ -32,6 +33,21 @@ function App () {
         <Stack.Screen 
           name="Home" 
           component={HomeScreen}
+          options={{
+            title: "Homepage",
+            headerBackVisible: false,
+            headerStyle: {
+              backgroundColor: "#00ff7f"
+            },
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              fontSize: 16,
+            }
+          }}
+        />
+        <Stack.Screen 
+          name="HomeUser" 
+          component={HomeUserScreen}
           options={{
             title: "Homepage",
             headerBackVisible: false,

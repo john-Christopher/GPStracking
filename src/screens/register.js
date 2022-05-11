@@ -1,9 +1,17 @@
 import React, {useState} from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 
-import { Icon } from "react-native-elements";
+import regAccount from '../components/regAccountFunc';
+import ProfileReg from '../components/regProfileFunc';
 
 function RegisterScreen ({navigation, route}) {
+  const [fname, setFname] = useState('');
+  const [lname, setLname] = useState('');
+  const [address, setAddress] = useState('');
+  const [regNum, setRegNum] = useState('');
+  const [color, setColor] = useState('');
+  const [chasNum, setChasNum] = useState('');
+  const [engNum, setEngNum] = useState('');
   const [user, setUser] = useState('');
   const [pwd, setPwd] = useState('');
   const [conpwd, setConPwd] = useState('');
@@ -25,7 +33,7 @@ function RegisterScreen ({navigation, route}) {
           </View>
           <TextInput 
             style={styles.fieldInput}
-            onChangeText={setUser}
+            onChangeText={setFname}
             placeholder="Enter first name here . . ."
             placeholderTextColor="#888"
           />
@@ -38,7 +46,7 @@ function RegisterScreen ({navigation, route}) {
           </View>
           <TextInput 
             style={styles.fieldInput}
-            onChangeText={setPwd}
+            onChangeText={setLname}
             placeholder="Enter last name here . . ."
             placeholderTextColor="#888"
           />
@@ -51,7 +59,7 @@ function RegisterScreen ({navigation, route}) {
           </View>
           <TextInput 
             style={styles.fieldInput}
-            onChangeText={setConPwd}
+            onChangeText={setAddress}
             placeholder="Enter address here . . ."
             placeholderTextColor="#888"
           />
@@ -65,7 +73,7 @@ function RegisterScreen ({navigation, route}) {
           </View>
           <TextInput 
             style={styles.fieldInput}
-            onChangeText={setUser}
+            onChangeText={setRegNum}
             placeholder="Enter registration number here . . ."
             placeholderTextColor="#888"
           />
@@ -78,7 +86,7 @@ function RegisterScreen ({navigation, route}) {
           </View>
           <TextInput 
             style={styles.fieldInput}
-            onChangeText={setPwd}
+            onChangeText={setColor}
             placeholder="Enter color here . . ."
             placeholderTextColor="#888"
           />
@@ -91,7 +99,7 @@ function RegisterScreen ({navigation, route}) {
           </View>
           <TextInput 
             style={styles.fieldInput}
-            onChangeText={setConPwd}
+            onChangeText={setChasNum}
             placeholder="Enter chassis number here . . ."
             placeholderTextColor="#888"
           />
@@ -104,7 +112,7 @@ function RegisterScreen ({navigation, route}) {
           </View>
           <TextInput 
             style={styles.fieldInput}
-            onChangeText={setConPwd}
+            onChangeText={setEngNum}
             placeholder="Enter engine number here . . ."
             placeholderTextColor="#888"
           />
@@ -152,7 +160,10 @@ function RegisterScreen ({navigation, route}) {
           />
         </View>
         <View style={styles.btnBottom}>
-          <Pressable style={styles.btnBtn}>
+          <Pressable style={styles.btnBtn} onPress={() => {
+            ProfileReg(fname, lname, address, engNum, color, chasNum, engNum, user, pwd, conpwd),
+            regAccount(user, pwd, conpwd, navigation)
+          }}>
             <Text style={styles.btnTxt}>
               Register
             </Text>

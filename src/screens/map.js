@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View, Dimensions, TextInput, FlatList } from 'react-native';
 import { Icon } from 'react-native-elements';
-import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import { enableLatestRenderer } from 'react-native-maps';
+import GeoLocation from 'react-native-geolocation-service';
 
 
 const autoHeight = Dimensions.get('window').height;
@@ -11,6 +12,24 @@ enableLatestRenderer();
 
 function MapScreen({navigation, route}) {
   const user = route.params?.user;
+  const [position, setPosition] = useState({
+    latitude:  	13.320961,
+    longitude: 123.505602,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
+  })
+  
+  useEffect(() => {
+    GeoLocation.getCurrentPosition((pos) => {
+      const crd = pos.coords;
+      setPosition({
+        latitude: crd.latitude,
+        longitude: crd.longitude,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      })
+    })
+  })
 
   return(
     <View style={styles.mainContainer}>
@@ -48,13 +67,16 @@ function MapScreen({navigation, route}) {
       <MapView
         provider={PROVIDER_GOOGLE}
         style={styles.map}
-        region={{
-          latitude:  	13.320961,
-          longitude: 123.505602,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
-      />
+        showsUserLocation={true}
+        showsMyLocationButton={true}
+        followsUserLocation={true}
+        rotateEnabled={true}
+        initialRegion={position}>
+        <Marker 
+          title='You are here'
+          coordinate={position}
+        />
+      </MapView>
       </ScrollView>
     </View>
   )

@@ -58,16 +58,16 @@ function HomeScreen({navigation, route}) {
           />
           <Icon name='search' type='material' color="#000" style={{backgroundColor: "#00ff7f", padding: 10, borderRadius: 7,}} size={32} />
         </View>
+        <View style={styles.txtContainerAdmin}>
+          <Text style={styles.txtTitleAdmin}>Name</Text>
+          <Text style={styles.txtTitleAdmin}>Registration Number</Text>
+          <Text style={styles.txtTitleAdmin}>Address</Text>
+        </View>
       </View>
       <FlatList 
           data={profile}
           renderItem={({ item }) => (
             <View style={styles.dataContainerAdmin}>
-              <View style={styles.txtContainerAdmin}>
-                <Text style={styles.txtTitleAdmin}>Name</Text>
-                <Text style={styles.txtTitleAdmin}>Registration Number</Text>
-                <Text style={styles.txtTitleAdmin}>Address</Text>
-              </View>
               <View style={styles.txtContainerAdmin}>
                 <Text style={styles.txtBodyAdmin}>{item.FirstName} {item.LastName}</Text>
                 <Text style={styles.txtBodyAdmin}>{item.RegNum}</Text>

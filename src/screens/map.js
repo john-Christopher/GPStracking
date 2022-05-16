@@ -1,6 +1,7 @@
 import React from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View, Dimensions, TextInput, FlatList } from 'react-native';
 import { Icon } from 'react-native-elements';
+import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 
 const autoHeight = Dimensions.get('window').height;
 
@@ -40,7 +41,15 @@ function MapScreen({navigation, route}) {
         </View>
       </View>
       <ScrollView style={styles.bodyContainer}>
-        
+      <MapView
+        provider={PROVIDER_GOOGLE}
+        region={{
+          latitude: 37.78825,
+          longitude: -122.4324,
+          latitudeDelta: 0.015,
+          longitudeDelta: 0.0121,
+        }}
+      />
       </ScrollView>
     </View>
   )

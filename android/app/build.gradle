@@ -147,7 +147,7 @@ android {
         }
     }
     signingConfigs {
-        debug {
+        release {
             storeFile file('AlarmAndTracking.keystore')
             storePassword '123456'
             keyAlias 'Tracking'

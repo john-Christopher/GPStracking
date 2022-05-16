@@ -24,34 +24,16 @@ function LoginFunction(user, pwd, navigation, route){
     })
     .catch(err => {
       console.log("Login Error")
-      const attempt = 1;
-
-      if(attempt == 3){
-        Alert.alert(
-          "Login Attempt "+attempt,
-          "Email or Password is incorrect",
-          [
-            {
-              text: "Ok",
-              onPress: () => console.log("Ok")
-            }
-          ]
-        )
-        attempt+=1;
-      }else{
-        Alert.alert(
-          "Login Attempt "+attempt,
-          "Email or Password is incorrect",
-          [
-            {
-              text: "Ok",
-              onPress: () => console.log("Ok")
-            }
-          ]
-        )
-        attempt+=1;
-      }
-      
+      Alert.alert(
+        "Login Error",
+        "Email or Password is incorrect",
+        [
+          {
+            text: "Ok",
+            onPress: () => console.log("Ok")
+          }
+        ]
+      )
     })
 }
 

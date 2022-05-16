@@ -2,8 +2,12 @@ import React from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View, Dimensions, TextInput, FlatList } from 'react-native';
 import { Icon } from 'react-native-elements';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+import { enableLatestRenderer } from 'react-native-maps';
+
 
 const autoHeight = Dimensions.get('window').height;
+
+enableLatestRenderer();
 
 function MapScreen({navigation, route}) {
   const user = route.params?.user;
@@ -43,11 +47,12 @@ function MapScreen({navigation, route}) {
       <ScrollView style={styles.bodyContainer}>
       <MapView
         provider={PROVIDER_GOOGLE}
+        style={styles.map}
         region={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 0.015,
-          longitudeDelta: 0.0121,
+          latitude:  	13.320961,
+          longitude: 123.505602,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
         }}
       />
       </ScrollView>
@@ -78,8 +83,12 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
   bodyContainer: {
-    marginLeft: 15,
-    marginTop: 25,
+    marginTop: 80,
+    marginLeft: 10,
+  },
+  map: {
+    height: 500,
+    width: 300,
   },
   srchHolder: {
     flexDirection: "row",
